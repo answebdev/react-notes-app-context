@@ -33,32 +33,32 @@ const App = () => {
   ]);
 
   // Add a note
-  const addNote = (text) => {
-    const date = new Date();
-    const newNote = {
-      id: nanoid,
-      text: text,
-      date: date.toLocaleDateString(),
-    };
-    // Create a  new array of new notes - use spread operator so as not to mutate the state, which is bad
-    const newNotes = [...notes, newNote];
+  // const addNote = (text) => {
+  //   const date = new Date();
+  //   const newNote = {
+  //     id: nanoid,
+  //     text: text,
+  //     date: date.toLocaleDateString(),
+  //   };
+  //   // Create a  new array of new notes - use spread operator so as not to mutate the state, which is bad
+  //   const newNotes = [...notes, newNote];
 
-    // Update the state with the new array of new notes
-    setNotes(newNotes);
-  };
+  //   // Update the state with the new array of new notes
+  //   setNotes(newNotes);
+  // };
 
   // Retrieve notes that are saved in local storage when app loads
-  // useEffect(() => {
-  //   const savedNotes = JSON.parse(localStorage.getItem('react-notes-app-data'));
-  //   if (savedNotes) {
-  //     setNotes(savedNotes);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const savedNotes = JSON.parse(localStorage.getItem('react-notes-app-data'));
+    if (savedNotes) {
+      setNotes(savedNotes);
+    }
+  }, []);
 
   // Save notes to local storage
-  // useEffect(() => {
-  //   localStorage.setItem('react-notes-app-data', JSON.stringify(notes));
-  // }, [notes]);
+  useEffect(() => {
+    localStorage.setItem('react-notes-app-data', JSON.stringify(notes));
+  }, [notes]);
 
   return (
     // if 'darkMode' is equal to true (&&), then add the 'dark-mode' class:
@@ -76,7 +76,7 @@ const App = () => {
             notes={notes.filter((note) =>
               note.text.toLowerCase().includes(searchText)
             )}
-            handleAddNote={addNote}
+            // handleAddNote={addNote}
           />
         </div>
       </AppProvider>

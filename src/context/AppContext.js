@@ -7,6 +7,12 @@ const AppReducer = (state, action) => {
       return {
         ...state,
       };
+    case 'ADD_NOTE':
+      return {
+        // Copy the current state:
+        ...state,
+        notes: [...state.notes, action.payload],
+      };
     case 'DELETE_NOTE':
       return {
         ...state,

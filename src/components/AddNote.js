@@ -1,27 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { nanoid } from 'nanoid';
 
-const AddNote = ({ handleAddNote }) => {
+const AddNote = () => {
+  const { dispatch } = useContext(AppContext);
   const [noteText, setNoteText] = useState('');
   const characterLimit = 200;
 
   const handleChange = (event) => {
-    // If user types number of characters withing the limit,
-    // the 'noteText' state will be set.
-    // If the user types more characters than allowed (200),
-    // it will skip over the following condition block and not set the state (i.e., user won't be able to type any more)
     if (characterLimit - event.target.value.length >= 0) {
       setNoteText(event.target.value);
     }
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = (text) => {
     // Check that value user types is valid before saving it to state -
     // use 'trim' to remove whitespace from the start and end of a string:
     if (noteText.trim().length > 0) {
-      handleAddNote(noteText);
+      // handleAddNote(noteText);
+      console.log(noteText);
 
       // Reset textarea after submit
       setNoteText('');
+
+      const date = new Date();
+      const newNote = {
+        id: nanoid,
+        text: text,
+        date: date.toLocaleDateString(),
+      };
+
+      // // Create a  new array of new notes - use spread operator so as not to mutate the state, which is bad
+      // const newNotes = [...notes, newNote];
+
+      // // Update the state with the new array of new notes
+      // setNotes(newNotes);
+
+      dispatch({
+        type: 'ADD_NOTE',
+        payload: newNote,
+      });
     }
   };
 
@@ -36,7 +54,8 @@ const AddNote = ({ handleAddNote }) => {
       ></textarea>
       <div className='note-footer'>
         <small>{characterLimit - noteText.length} Remaining</small>
-        <button className='save' onClick={handleSaveClick}>
+        {/* <button className='save' onClick={handleSaveClick}> */}
+        <button className='save' onClick={() => handleSaveClick(noteText)}>
           Save
         </button>
       </div>
