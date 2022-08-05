@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import { MdDeleteForever } from 'react-icons/md';
 
-const Note = ({ id, text, date, handleDeleteNote }) => {
+const Note = (props) => {
+  const { dispatch } = useContext(AppContext);
+
+  // Delete a note
+  const handleDeleteNote = () => {
+    dispatch({
+      type: 'DELETE_NOTE',
+      payload: props.id,
+    });
+  };
+
   return (
     <div className='note'>
-      <span>{text}</span>
+      <span>{props.text}</span>
       <div className='note-footer'>
-        <small>{date}</small>
+        <small>{props.date}</small>
         <MdDeleteForever
-          onClick={() => handleDeleteNote(id)}
+          onClick={() => handleDeleteNote(props.id)}
+          // onClick={handleDeleteNote}
           className='delete-icon'
           size='1.3em'
         />

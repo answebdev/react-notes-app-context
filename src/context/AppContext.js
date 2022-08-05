@@ -7,6 +7,11 @@ const AppReducer = (state, action) => {
       return {
         ...state,
       };
+    case 'DELETE_NOTE':
+      return {
+        ...state,
+        notes: state.notes.filter((note) => note.id !== action.payload),
+      };
     default:
       return state;
   }
@@ -17,6 +22,11 @@ const initialState = {
     {
       id: nanoid(),
       text: 'First note of the app!',
+      date: '08/04/2022',
+    },
+    {
+      id: nanoid(),
+      text: 'Add Context API to app.',
       date: '08/04/2022',
     },
   ],

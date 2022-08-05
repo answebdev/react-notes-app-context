@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import Note from './Note';
 import AddNote from './AddNote';
 
-const NotesList = ({ notes, handleAddNote, handleDeleteNote }) => {
+const NotesList = ({ handleAddNote, handleDeleteNote }) => {
+  const { notes } = useContext(AppContext);
+
   return (
     <div className='notes-list'>
       {notes.map((note) => (
