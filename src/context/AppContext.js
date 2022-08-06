@@ -18,6 +18,13 @@ const AppReducer = (state, action) => {
         ...state,
         notes: state.notes.filter((note) => note.id !== action.payload),
       };
+    case 'FILTER_NOTES':
+      return {
+        ...state,
+        notes: state.notes.filter((note) =>
+          note.text.toLowerCase().includes(action.payload)
+        ),
+      };
     default:
       return state;
   }

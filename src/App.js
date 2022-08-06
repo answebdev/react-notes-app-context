@@ -6,7 +6,7 @@ import NotesList from './components/NotesList';
 import Search from './components/Search';
 
 const App = () => {
-  const [searchText, setSearchText] = useState('');
+  // const [searchText, setSearchText] = useState('');
   const [darkMode, setDarkMode] = useState(false);
 
   const [notes, setNotes] = useState([]);
@@ -45,17 +45,20 @@ const App = () => {
       <AppProvider>
         <div className='container'>
           <Header handleToggleDarkMode={setDarkMode} />
-          <Search handleSearchNote={setSearchText} />
+          {/* <Search handleSearchNote={setSearchText} /> */}
+          <Search />
           <NotesList
-            // Filter the notes based on the search term before it gets passed to the notes list:
-            // 'note.text' is the text of the note.
-            // So, take the current list of notes, filter those notes to return only the ones that include the search text,
-            // which is what the user has typed into the search bar.
-            // It will then pass the result of this to the 'NotesList' component as a 'notes' prop:
-            notes={notes.filter((note) =>
-              note.text.toLowerCase().includes(searchText)
-            )}
-            // handleAddNote={addNote}
+          // Filter the notes based on the search term before it gets passed to the notes list:
+          // 'note.text' is the text of the note.
+          // So, take the current list of notes, filter those notes to return only the ones that include the search text,
+          // which is what the user has typed into the search bar.
+          // It will then pass the result of this to the 'NotesList' component as a 'notes' prop:
+
+          // notes={notes.filter((note) =>
+          //   note.text.toLowerCase().includes(searchText)
+          // )}
+
+          // handleAddNote={addNote}
           />
         </div>
       </AppProvider>
