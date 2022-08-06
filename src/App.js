@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { AppProvider } from './context/AppContext';
 import Header from './components/Header';
 import NotesList from './components/NotesList';
@@ -9,28 +9,7 @@ const App = () => {
   const [searchText, setSearchText] = useState('');
   const [darkMode, setDarkMode] = useState(false);
 
-  const [notes, setNotes] = useState([
-    // {
-    //   id: nanoid(),
-    //   text: 'This is my first note!',
-    //   date: '07/28/2022',
-    // },
-    // {
-    //   id: nanoid(),
-    //   text: 'This is my second note!',
-    //   date: '07/29/2022',
-    // },
-    // {
-    //   id: nanoid(),
-    //   text: 'This is my third note!',
-    //   date: '08/02/2022',
-    // },
-    // {
-    //   id: nanoid(),
-    //   text: 'This is my fourth note!',
-    //   date: '08/05/2022',
-    // },
-  ]);
+  const [notes, setNotes] = useState([]);
 
   // Add a note
   // const addNote = (text) => {
